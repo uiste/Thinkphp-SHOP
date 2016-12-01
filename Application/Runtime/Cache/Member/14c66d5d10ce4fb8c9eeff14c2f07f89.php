@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="/Public/Member/style/header.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Member/style/login.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Member/style/footer.css" type="text/css">
+	<link rel="stylesheet" href="/Public/Lib/EmailCom/completer.css" type="text/css">
 </head>
 <body>
 	<!-- 顶部导航 start -->
@@ -48,7 +49,7 @@
 		</div>
 		<div class="login_bd">
 			<div class="login_form fl">
-				<form action="/index.php/Member/Member/register" method="post">
+				<form action="/index.php/Member/Member/register.html" method="post">
 					<ul>
 						<li>
 							<label for="">用户名：</label>
@@ -57,7 +58,7 @@
 						</li>
 						<li>
 							<label for="">邮箱：</label>
-							<input type="text" class="txt" name="email" />
+							<input type="text" class="txt" id="auto_complete_email" name="email" />
 							<p>3-20位字符，可由字母、数字和下划线组成</p>
 						</li>
 						<li>
@@ -133,6 +134,13 @@
 		</p>
 	</div>
 	<!-- 底部版权 end -->
-
+<script type="text/javascript" src="/Public/Lib/EmailCom/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/Public/Lib/EmailCom/completer.min.js"></script>
+<script type="text/javascript">
+	$("#auto_complete_email").completer({
+		separator: "@",
+		source: ["163.com", "qq.com", "126.com", "139.com", "gmail.com", "hotmail.com", "icloud.com"]
+	});
+</script>
 </body>
 </html>

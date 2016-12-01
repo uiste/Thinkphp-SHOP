@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>演示：jQuery自动完成插件：completer</title>
+<meta name="keywords" content="B5教程网" />
+<meta name="description" content="B5教程网" />
+<link rel="stylesheet" type="text/css" href="completer.css">
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+<style type="text/css">
+.demo{width:360px;margin:50px auto 10px auto;padding:10px;}
+.demo p{line-height:30px}
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script src="completer.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#auto-complete-email").completer({
+		separator: "@",
+		source: ["163.com", "qq.com", "126.com", "139.com", "gmail.com", "hotmail.com", "icloud.com"]
+	});
+	// $("#auto-complete-time").completer({
+	// 	filter: function(val) {
+	// 		val = val.replace(/\D/g, "").substr(0, 2);
+
+	// 		if (val) {
+	// 			val = parseInt(val, 10) || 0;
+	// 			val = val > 23 ? 23 : val < 10 ? "0" + val : val;
+	// 		}
+
+	// 		return val;
+	// 	},
+	// 	separator: ":",
+	// 	source: ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]
+	// });
+	
+	// var $autoCompleteDomain = $("#auto-complete-domain"),
+	// $autoCompleteGo = $("#auto-complete-go");
+
+	// $autoCompleteDomain.completer({
+	// 	complete: function() {
+	// 		var url = "http://www." + $autoCompleteDomain.val();
+
+	// 		$autoCompleteGo.attr("href", url);
+	// 	},
+	// 	separator: ".",
+	// 	source: ["com", "net", "org", "co", "io", "me", "cn", "com.cn"]
+	// });
+
+});
+</script>
+</head>
+
+<body>
+
+
+</div>
+
+<div id="main">
+
+	<div class="demo">
+		<p>1、输入邮箱号：</p>
+    	<input type="text" id="auto-complete-email" class="form-control" placeholder="E-mail">
+		<p>&nbsp;</p>
+		<p>2、输入时间：</p>
+    	<input type="text" id="auto-complete-time" class="form-control">
+		<p>&nbsp;</p>
+		<p>3、输入域名：</p>
+		<div class="input-group">
+			<span class="input-group-addon">www.</span> 
+			<input id="auto-complete-domain" class="form-control" type="text" placeholder="请输入域名" autocomplete="off" style="z-index:0"> <span class="input-group-btn"><a id="auto-complete-go" class="btn btn-default" href="javascript:void(0);">Go!</a></span>
+		</div>
+		
+	</div>
+
+</div>
+</body>
+</html>

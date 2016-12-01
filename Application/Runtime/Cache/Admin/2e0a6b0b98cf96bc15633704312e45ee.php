@@ -1,71 +1,108 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>购物商城后台管理系统</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="/Public/Admin/assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="/Public/Admin/assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.min.css"/>
+<link rel="stylesheet" href="/Public/Admin/assets/css/admin.css">
+<link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" />
+<link rel="stylesheet" href="/Public/Admin/assets/css/app.css">
+<script src="/Public/Admin/assets/js/jquery.min.js"></script>
+<script src="/Public/Admin/assets/js/app.js"></script>
+<script type="text/javascript">
+	$('#turnIndex').click(function(){
+		alert(111)
+		// window.location.href = '/index.php/Admin/Admin/index'
+	})
+</script>
+</head>
+<body>
+<div class="daohang">
+      <ul>
+        <li><button id="turnIndex" type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
+        <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li> 
+      </ul>
+</div>
+<style type="text/css">
+  td,th{text-align: center;}
+</style>
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-users"> 管理员管理</ul>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="/index.php/Admin/Admin/lst">管理员列表</a></dl>
+      
+      <dl>
+        <button type="button" id="add" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 手动添加会员</button>
+      </dl>
+      <!--这里打开的是新页面-->
+    </div>
+    <form class="am-form am-g">
+          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+              <tr class="am-success">
+                <th class="table-id">序号</th>
+                <th class="table-title">管理员名称</th>
+                <th class="table-title">管理员角色</th>
+                <th class="table-type">邮箱</th>
+                <th class="table-author am-hide-sm-only">登录时间</th>
+                <th class="table-author am-hide-sm-only">登录IP</th>
+                <th width="130px" class="table-set">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($adminData as $k => $v): ?>
+                <tr class="tr1">
+                  <td class="td1"><?php echo $v['id'];?></td>
+                  <td><a href="#"><?php echo $v['username'];?></a></td>
+                  <td><a href="#"><?php echo $v['authname'];?></a></td>
+                  <td><?php echo $v['email'];?></td>
+                  <td><?php echo date('Y-m-d H:i:s', $v['login_time']);?></td>
+                  <td><?php echo $v['login_ip'];?></td>
+                  <td>  	
+                        <a href="/index.php/Admin/Admin/edt/id/<?php echo $v['id'] ?>"><button id="edit" type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改"><span class="am-icon-pencil-square-o"></span></button></a>
+                        <a href="/index.php/Admin/Admin/edt/id/<?php echo $v['id'] ?>" onclick="return confirm('确定要删除吗')" ><button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除"><span class="am-icon-trash-o"></span></button></a>
+                  </td>
+                </tr>
+              <?php endforeach ?>
+            </tbody>
+          </table>
+          <ul class="am-pagination am-fr">
+                <li class="am-disabled"><a href="#">«</a></li>
+                <li class="am-active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+              </ul>
+          <hr>
+    </form>
+<script type="text/javascript">
+$('#edit').click(function(){
+      console.log($(this).parent().parent().parent().parent('.tr1').find('.td1').text());
 
-        <title>管理员列表</title>
+});
+  $('#add').click(function(){
+    // window.location.href = "<?php echo U('User/add');?>";
+    // window.location.href = '/index.php/Admin/Admin/del/id/' + str;
+    window.location.href = '/index.php/Admin/Admin/add';
+  });
 
-        <link href="/Public/Admin/css/mine.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
-        <style>
-            .tr_color{background-color: #9F88FF}
-        </style>
-        <div class="div_head">
-            <span>
-                <span style="float: left;">当前位置是：管理员管理-》管理员列表</span>
-                <span style="float: right; margin-right: 8px; font-weight: bold;">
-                    <a style="text-decoration: none;" href="/index.php/Admin/Admin/add">【添加管理员】</a>
-                </span>
-            </span>
-        </div>
-        <div></div>
-        <div class="div_search">
-            <span>
-                <form action="#" method="get">
-                    品牌<select name="s_product_mark" style="width: 100px;">
-                        <option selected="selected" value="0">请选择</option>
-                        <option value="1">苹果apple</option>
-                    </select>
-                    <input value="查询" type="submit" />
-                </form>
-            </span>
-        </div>
-        <div style="font-size: 13px; margin: 10px 5px;">
-            <table class="table_a" border="1" width="100%">
-                <tbody>
-                    <tr style="font-weight: bold;">
-                        <td>序号</td>
-                        <td>管理员名称</td>
-                        <td>邮箱</td>
-                        <td>登录时间</td>
-                        <td>登录IP</td>
-                        <td align="center">操作</td>
-                    </tr>
-                    <!-- 循环 -->
-                    <?php foreach ($adminData as $k => $v): ?>
-                        <tr id="product<?php echo $k+1;?>">
-                            <td><?php echo $v['id'];?></td>
-                            <td><a href="#"><?php echo $v['username'];?></a></td>
-                            <td><?php echo $v['email'];?></td>
-                            <td><?php echo date('Y-m-d H:i:s', $v['login_time']);?></td>
-                            <td><?php echo $v['login_ip'];?></td>
-                            <!-- U 第一个参数 方法 第二个get传递的参数 第三个关闭伪静态.html -->
-                            <td>
-                            <?php if($v['id'] > 1):?>
-                                <a href="<?php echo U('Admin/edt',array('id'=>$v['id']),false);?>">修改</a> <a href="<?php echo U('Admin/del',array('id'=>$v['id']),false);?>">删除</a>
-                            </td>
-                            <?php endif;?>
-                        </tr>
-                    <?php endforeach ?>
-
-                    <tr>
-                        <td colspan="20" style="text-align: center;">
-                            [1]
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </body>
+</script>
+ 			<div class="foods">
+			      <ul>版权所有@2015</ul>
+			      <dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>  
+			</div>
+		</div>
+	</body>
 </html>

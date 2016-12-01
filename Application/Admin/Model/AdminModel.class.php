@@ -14,8 +14,8 @@ class AdminModel extends Model
 		array('password', 'require', '管理员密码不能为空',1,'regex',1),
 		array('email', 'require', '管理员邮箱不能为空'),
 
-		array('pwd', 'password', '密码必须一致',0,'confirm'),
-		array('code', 'check_verify', '验证码输入错误',0,'function'),
+		array('repassword', 'password', '密码必须一致',0,'confirm'),
+		// array('code', 'check_verify', '验证码输入错误',0,'function'),
 	);
 	
 	// 自动填充
@@ -49,6 +49,7 @@ class AdminModel extends Model
 			if ($userinfo['password']== md5(md5($password).$userinfo['salt']) ) {
 				session('id',$userinfo['id']);
 				session('username',$userinfo['username']);
+				$this->updateUserInfo($userinfo['id']);
 				return 1;
 			}else{
 				return 2; //密码错误
@@ -57,5 +58,13 @@ class AdminModel extends Model
 			return 3; //用户不存在
 		}
 	}
-
+	// 更新登录IP与登录时间
+	public function updateUserInfo($uid){
+		$data = array(
+			'id'				=> $uid,
+			'login_time'		=> time(),
+			'login_ip'			=> ip2long( get_client_ip() ),
+		);
+		$this->save($data);
+	}
 }

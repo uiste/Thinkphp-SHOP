@@ -34,9 +34,9 @@ class LoginController extends Controller {
      */
     public function code(){
         $config =    array(
-            'imageW'        => 110,
-            'imageH'        => 40,
-            'fontSize'      => 15,    // 验证码字体大小
+            'imageW'        => 250,
+            'imageH'        => 60,
+            'fontSize'      => 25,    // 验证码字体大小
             'length'        => 4,     // 验证码位数
             'useNoise'      => false, // 关闭验证码杂点
             'useCurve'      => false, // 是否使用混淆曲线
