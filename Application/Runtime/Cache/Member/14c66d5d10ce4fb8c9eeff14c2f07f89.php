@@ -18,7 +18,7 @@
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，欢迎来到京西！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>] </li>
+					<li>您好，欢迎来到京西！[<a href=" <?php echo U('Member/Member/login'); ?> ">登录</a>] [<a href="<?php echo U('Member/Member/register'); ?>">免费注册</a>] </li>
 					<li class="line">|</li>
 					<li>我的订单</li>
 					<li class="line">|</li>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="login_bd">
 			<div class="login_form fl">
-				<form action="/index.php/Member/Member/register.html" method="post">
+				<form action="/index.php/Member/Member/register" method="post">
 					<ul>
 						<li>
 							<label for="">用户名：</label>

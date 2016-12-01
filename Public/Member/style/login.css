@@ -11,7 +11,8 @@
 .login_bd{width: 958px; overflow: auto; padding: 30px 0 30px 30px; border: 1px solid #D1D1D1; border-top: 0;}
 .login_form{width: 540px; color: #666; border-right: 1px solid #eee;}
 .login_form li{padding: 10px 0;}
-.login_form label{float: left; display: inline; width: 60px; text-align: right; position: relative; top: 7px; }
+/*.login_form label{float: left; display: inline; width: 60px; text-align: right; position: relative; top: 7px; }*/
+.login_form label{display: inline; width: 60px; text-align: right; position: relative; top: 7px; }
 .login_form .txt{width: 295px; height: 20px; padding: 5px; border: 1px solid #ccc;}
 .login_form .checkcode input{width: 100px; height: 20px; padding: 5px; border: 1px solid #ccc;}
 .login_form .checkcode input.next{width: 105px; height: 32px; padding: 5px; border: 1px solid #ccc;cursor: pointer;}

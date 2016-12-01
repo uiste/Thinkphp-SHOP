@@ -1,4 +1,12 @@
-<?php 
+<?php
+	/**
+	 * 验证码检测
+	 */
+	function check_verify($code){
+	    $verify = new \Think\Verify();
+	    return $verify->check($code, $id);
+	}
+	
 	/**
 	 * 邮件发送函数
 	 * @param  string $to      邮件接收者
