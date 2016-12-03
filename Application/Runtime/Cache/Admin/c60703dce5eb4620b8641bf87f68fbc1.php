@@ -31,48 +31,44 @@
     <div class="listbiaoti am-cf">
       <ul class="am-icon-flag on"> 栏目名称</ul>
       
-      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="/index.php/Admin/Admin/lst">管理员列表</a></dl>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="/index.php/Admin/Auth/lst">权限列表</a></dl>
     </div>
-	
+  
     <div class="fbneirong">
-      <form class="am-form" action="/index.php/Admin/Admin/add" method="post">
+      <form class="am-form" action="/index.php/Admin/Auth/edt/id/10" method="post">
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员名称：</div>
+          <div class="zuo">权限名称：</div>
           <div class="you">
-            <input type="text" name="username" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入管理员名称">
+            <input type="text" name="auth_name" value="<?php echo ($authInfo["auth_name"]); ?>" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入权限名称">
+            <input type="hidden" name="auth_id" value="<?php echo ($authInfo["auth_id"]); ?>">
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员角色：</div>
+          <div class="zuo">上级权限：</div>
           <div class="you">
-            <select name="role_id">
-              <option value="0">请选择管理员角色</option>
-              <?php if(is_array($roleData)): $i = 0; $__LIST__ = $roleData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["role_id"]); ?>"><?php echo ($vo["role_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+            <select name="auth_pid">
+              <option value="0">请选择上级权限</option>
+              <?php if(is_array($authData)): $i = 0; $__LIST__ = $authData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(!in_array($vo['auth_id'], $authChildList)): ?><option value="<?php echo ($vo["auth_id"]); ?>" <?php echo $authInfo['auth_pid']==$vo['auth_id']?'selected':'' ?> ><?php echo (str_repeat('&emsp;',$vo["level"]*2)); echo ($vo["auth_name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
             </select>
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">新密码：</div>
+          <div class="zuo">控制器名：</div>
           <div class="you">
-            <input type="password" name="password" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入新密码">
+            <input type="text" name="auth_c" value="<?php echo ($authInfo["auth_c"]); ?>" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入控制器名">
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">新密码：</div>
+          <div class="zuo">权限方法</div>
           <div class="you">
-            <input type="password" name="repassword" class="am-input-sm" id="doc-ipt-email-1" placeholder="请再次输入新密码">
+            <input type="text" name="auth_a" value="<?php echo ($authInfo["auth_a"]); ?>" class="am-input-sm" id="doc-ipt-email-1" placeholder="请再次输入方法名">
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员邮箱：</div>
+          <div class="zuo">是否显示</div>
           <div class="you">
-            <input type="email" name="email" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入管理员邮箱">
-          </div>
-        </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">管理员备注：</div>
-          <div class="you">
-            <textarea class="" name="mark_up" rows="2" id="doc-ta-1"></textarea>
+            <label class="am-radio-inline"><input type="radio" checked value="1" name="is_show"> 是</label>
+            <label class="am-radio-inline"><input type="radio" <?php echo $authInfo['is_show']?'':'checked' ?> value="0" name="is_show"> 否</label>
           </div>
         </div>
         <div class="am-form-group am-cf">
@@ -84,7 +80,7 @@
     </div>
 <script type="text/javascript">
     $('#btnBack').click(function(event) {
-      window.location.href = '/index.php/Admin/Admin/lst';
+      window.location.href = '/index.php/Admin/Auth/lst';
     });
 </script>
 			<div class="foods">

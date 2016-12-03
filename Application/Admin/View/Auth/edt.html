@@ -1,0 +1,62 @@
+<include file="Public/header" />
+<div class="admin-biaogelist">
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="__CONTROLLER__/lst">权限列表</a></dl>
+    </div>
+  
+    <div class="fbneirong">
+      <form class="am-form" action="__SELF__" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">权限名称：</div>
+          <div class="you">
+            <input type="text" name="auth_name" value="{$authInfo.auth_name}" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入权限名称">
+            <input type="hidden" name="auth_id" value="{$authInfo.auth_id}">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">上级权限：</div>
+          <div class="you">
+            <select name="auth_pid">
+              <option value="0">请选择上级权限</option>
+              <volist name="authData" id="vo">
+                <if condition="!in_array($vo['auth_id'], $authChildList)">
+                <option value="{$vo.auth_id}" <?php echo $authInfo['auth_pid']==$vo['auth_id']?'selected':'' ?> >{$vo.level|str_repeat='&emsp;',###*2 }{$vo.auth_name}</option>
+                </if>
+              </volist>
+            </select>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">控制器名：</div>
+          <div class="you">
+            <input type="text" name="auth_c" value="{$authInfo.auth_c}" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入控制器名">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">权限方法：</div>
+          <div class="you">
+            <input type="text" name="auth_a" value="{$authInfo.auth_a}" class="am-input-sm" id="doc-ipt-email-1" placeholder="请再次输入方法名">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">是否显示：</div>
+          <div class="you">
+            <label class="am-radio-inline"><input type="radio" checked value="1" name="is_show"> 是</label>
+            <label class="am-radio-inline"><input type="radio" <?php echo $authInfo['is_show']?'':'checked' ?> value="0" name="is_show"> 否</label>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+<script type="text/javascript">
+    $('#btnBack').click(function(event) {
+      window.location.href = '__CONTROLLER__/lst';
+    });
+</script>
+<include file="Public/footer" />

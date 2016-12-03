@@ -40,6 +40,7 @@ class LoginController extends Controller {
             'length'        => 4,     // 验证码位数
             'useNoise'      => false, // 关闭验证码杂点
             'useCurve'      => false, // 是否使用混淆曲线
+            'bg'            =>array(40, 45, 47),
         );
         $Verify =     new \Think\Verify($config);
         $Verify->entry();

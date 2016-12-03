@@ -1,0 +1,59 @@
+<include file="Public/header" />
+<div class="admin-biaogelist">
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="__CONTROLLER__/lst">角色列表</a></dl>
+    </div>
+  
+    <div class="fbneirong">
+      <form class="am-form" action="__SELF__" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">角色名称：</div>
+          <div class="you">
+            <input type="text" name="role_name" value="{$role_info.role_name}" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入角色名称">
+            <input type="hidden" name="role_id" value="{$role_info.role_id}">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">权限分配：</div>
+          <div class="you">
+          <table class="am-table am-table-bordered am-table-striped">
+             <thead>
+                <tr>
+                   <th style="width:160px;text-align: center;">顶级权限</th>
+                   <th style="text-align: center;">子级权限</th>
+                </tr>
+             </thead>
+             <tbody>
+               <volist name="authData" id="vo1">
+                <if condition="$vo1.auth_pid eq 0">
+                  <tr>
+                     <td style="text-align: center;"><label class="am-checkbox-inline"><input type="checkbox" name="role_auth_ids[]" value="{$vo1.auth_id}" <?php echo strpos(','. $role_info['role_auth_ids'] . ',' ,',' . $vo1['auth_id'] . ',')!==false?'checked':''; ?> >{$vo1.auth_name}</label></td>
+                     <td>
+                    <volist name="authData" id="vo2">
+                    <if condition="$vo2.auth_pid eq $vo1.auth_id ">
+                      <label class="am-checkbox-inline"><input type="checkbox" name="role_auth_ids[]" value="{$vo2.auth_id}" <?php echo strpos(','. $role_info['role_auth_ids'] . ',' ,',' . $vo2['auth_id'] . ',')!==false?'checked':''; ?> >{$vo2.auth_name}</label>
+                    </if>
+                    </volist>
+                    </td>
+                  </tr>
+                </if>
+               </volist>
+             </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+<script type="text/javascript">
+    $('#btnBack').click(function(event) {
+      window.location.href = '__CONTROLLER__/lst';
+    });
+</script>
+<include file="Public/footer" />

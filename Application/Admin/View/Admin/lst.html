@@ -9,7 +9,7 @@
       <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="__CONTROLLER__/lst">管理员列表</a></dl>
       
       <dl>
-        <button type="button" id="add" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 手动添加会员</button>
+        <button type="button" id="add" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 添加管理员</button>
       </dl>
       <!--这里打开的是新页面-->
     </div>
@@ -31,13 +31,13 @@
                 <tr class="tr1">
                   <td class="td1"><?php echo $v['id'];?></td>
                   <td><a href="#"><?php echo $v['username'];?></a></td>
-                  <td><a href="#"><?php echo $v['authname'];?></a></td>
+                  <td><a href="#"><?php echo $v['role_name'];?></a></td>
                   <td><?php echo $v['email'];?></td>
                   <td><?php echo date('Y-m-d H:i:s', $v['login_time']);?></td>
                   <td><?php echo $v['login_ip'];?></td>
                   <td>  	
-                        <a href="__CONTROLLER__/edt/id/<?php echo $v['id'] ?>"><button id="edit" type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改"><span class="am-icon-pencil-square-o"></span></button></a>
-                        <a href="__CONTROLLER__/edt/id/<?php echo $v['id'] ?>" onclick="return confirm('确定要删除吗')" ><button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除"><span class="am-icon-trash-o"></span></button></a>
+                        <a href="__CONTROLLER__/edt/id/<?php echo $v['id'] ?>"><button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" title="修改"><span class="am-icon-pencil-square-o"></span></button></a>
+                        <a href="__CONTROLLER__/del/id/<?php echo $v['id'] ?>" onclick="return confirm('确定要删除吗')" ><button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" title="删除"><span class="am-icon-trash-o"></span></button></a>
                   </td>
                 </tr>
               <?php endforeach ?>
@@ -55,15 +55,10 @@
           <hr>
     </form>
 <script type="text/javascript">
-$('#edit').click(function(){
-      console.log($(this).parent().parent().parent().parent('.tr1').find('.td1').text());
-
-});
   $('#add').click(function(){
     // window.location.href = "{:U('User/add')}";
     // window.location.href = '__CONTROLLER__/del/id/' + str;
     window.location.href = '__CONTROLLER__/add';
   });
-
 </script>
  <include file="Public/footer" />

@@ -1,0 +1,36 @@
+<include file="Public/header" />
+<div class="admin-biaogelist">
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="__CONTROLLER__/lst">商品类型列表</a></dl>
+    </div>
+  
+    <div class="fbneirong">
+      <form class="am-form" action="__SELF__" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">商品类型名称：</div>
+          <div class="you">
+            <input type="text" name="type_name" value="{$TypeInfo.type_name}" id="doc-vld-name" minlength="2" placeholder="输入商品类型名称" class="am-form-field" required/>
+            <input type="hidden" name="type_id" value="{$TypeInfo.type_id}">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">权限分配：</div>
+          <div class="you">
+          <textarea id="doc-vld-ta-1" name="mark_up" minlength="4" maxlength="100" placeholder="请输入备注信息">{$TypeInfo.mark_up}</textarea>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+<script type="text/javascript">
+    $('#btnBack').click(function(event) {
+      window.location.href = '__CONTROLLER__/lst';
+    });
+</script>
+<include file="Public/footer" />

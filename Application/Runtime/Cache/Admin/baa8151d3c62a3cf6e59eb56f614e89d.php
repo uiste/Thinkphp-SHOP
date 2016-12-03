@@ -15,15 +15,10 @@
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.min.css"/>
 <link rel="stylesheet" href="/Public/Admin/assets/css/admin.css">
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" />
+<link rel="stylesheet" href="/Public/Admin/assets/css/font_awesome.css" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/app.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
-<script type="text/javascript">
-	$('#turnIndex').click(function(){
-		alert(111)
-		// window.location.href = '/index.php/Admin/Admin/index'
-	})
-</script>
 </head>
 <body>
 <div class="daohang">
@@ -53,7 +48,7 @@
           <div class="you">
             <select name="role_id">
               <option value="0">请选择管理员角色</option>
-              <option value="option2">选项二.....</option>
+              <?php if(is_array($roleData)): $i = 0; $__LIST__ = $roleData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["role_id"]); ?>" <?php echo $vo['role_id']==$adminInfo['role_id']?'selected':'' ?>><?php echo ($vo["role_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
             </select>
           </div>
         </div>
@@ -83,7 +78,7 @@
         </div>
         <div class="am-form-group am-cf">
           <div class="you" style="margin-left: 11%;">
-              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">添加</button>
+              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">提交</button>
           </div>
         </div>
       </form>

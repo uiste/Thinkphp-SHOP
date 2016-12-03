@@ -15,23 +15,12 @@
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.min.css"/>
 <link rel="stylesheet" href="/Public/Admin/assets/css/admin.css">
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" />
+<link rel="stylesheet" href="/Public/Admin/assets/css/font_awesome.css" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/app.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
-<script type="text/javascript">
-	$('#turnIndex').click(function(){
-		alert(111)
-		// window.location.href = '/index.php/Admin/Admin/index'
-	})
-</script>
 </head>
 <body>
-<div class="daohang">
-      <ul>
-        <li><button id="turnIndex" type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
-        <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li> 
-      </ul>
-</div>
 <body data-type="login" class="theme-black">
     <div class="am-g tpl-g">
         <div class="tpl-login">

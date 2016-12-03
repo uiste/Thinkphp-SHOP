@@ -20,7 +20,9 @@
           <div class="you">
             <select name="role_id">
               <option value="0">请选择管理员角色</option>
-              <option value="option2">选项二.....</option>
+              <volist name="roleData" id="vo">
+                <option value="{$vo.role_id}" <?php echo $vo['role_id']==$adminInfo['role_id']?'selected':'' ?>>{$vo.role_name}</option>
+              </volist>
             </select>
           </div>
         </div>
@@ -50,7 +52,7 @@
         </div>
         <div class="am-form-group am-cf">
           <div class="you" style="margin-left: 11%;">
-              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">添加</button>
+              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">提交</button>
           </div>
         </div>
       </form>

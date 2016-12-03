@@ -31,48 +31,36 @@
     <div class="listbiaoti am-cf">
       <ul class="am-icon-flag on"> 栏目名称</ul>
       
-      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="/index.php/Admin/Admin/lst">管理员列表</a></dl>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="/index.php/Admin/Role/lst">角色列表</a></dl>
     </div>
 	
     <div class="fbneirong">
-      <form class="am-form" action="/index.php/Admin/Admin/add" method="post">
+      <form class="am-form" action="/index.php/Admin/Role/add" method="post">
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员名称：</div>
+          <div class="zuo">角色名称：</div>
           <div class="you">
-            <input type="text" name="username" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入管理员名称">
+            <input type="text" name="role_name" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入角色名称">
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员角色：</div>
+          <div class="zuo">权限分配：</div>
           <div class="you">
-            <select name="role_id">
-              <option value="0">请选择管理员角色</option>
-              <?php if(is_array($roleData)): $i = 0; $__LIST__ = $roleData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["role_id"]); ?>"><?php echo ($vo["role_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
-          </div>
-        </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">新密码：</div>
-          <div class="you">
-            <input type="password" name="password" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入新密码">
-          </div>
-        </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">新密码：</div>
-          <div class="you">
-            <input type="password" name="repassword" class="am-input-sm" id="doc-ipt-email-1" placeholder="请再次输入新密码">
-          </div>
-        </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">管理员邮箱：</div>
-          <div class="you">
-            <input type="email" name="email" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入管理员邮箱">
-          </div>
-        </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">管理员备注：</div>
-          <div class="you">
-            <textarea class="" name="mark_up" rows="2" id="doc-ta-1"></textarea>
+          <table class="am-table am-table-bordered am-table-striped">
+             <thead>
+                <tr>
+                   <th style="width:160px;text-align: center;">顶级权限</th>
+                   <th style="text-align: center;">子级权限</th>
+                </tr>
+             </thead>
+             <tbody>
+               <?php if(is_array($authData)): $i = 0; $__LIST__ = $authData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i; if($vo1["auth_pid"] == 0): ?><tr>
+                     <td style="text-align: center;"><label class="am-checkbox-inline"><input type="checkbox" name="role_auth_ids[]" value="<?php echo ($vo1["auth_id"]); ?>"><?php echo ($vo1["auth_name"]); ?></label></td>
+                     <td>
+                    <?php if(is_array($authData)): $i = 0; $__LIST__ = $authData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i; if($vo2["auth_pid"] == $vo1["auth_id"] ): ?><label class="am-checkbox-inline"><input type="checkbox" name="role_auth_ids[]" value="<?php echo ($vo2["auth_id"]); ?>"><?php echo ($vo2["auth_name"]); ?></label><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                    </td>
+                  </tr><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+             </tbody>
+            </table>
           </div>
         </div>
         <div class="am-form-group am-cf">
@@ -84,7 +72,7 @@
     </div>
 <script type="text/javascript">
     $('#btnBack').click(function(event) {
-      window.location.href = '/index.php/Admin/Admin/lst';
+      window.location.href = '/index.php/Admin/Role/lst';
     });
 </script>
 			<div class="foods">

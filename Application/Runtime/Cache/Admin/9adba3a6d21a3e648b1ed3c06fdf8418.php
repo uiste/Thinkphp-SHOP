@@ -31,48 +31,45 @@
     <div class="listbiaoti am-cf">
       <ul class="am-icon-flag on"> 栏目名称</ul>
       
-      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="/index.php/Admin/Admin/lst">管理员列表</a></dl>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="/index.php/Admin/Attribute/lst">属性列表</a></dl>
     </div>
 	
     <div class="fbneirong">
-      <form class="am-form" action="/index.php/Admin/Admin/add" method="post">
+      <form class="am-form" action="/index.php/Admin/Attribute/edt/id/5/type_id/1" method="post">
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员名称：</div>
+          <div class="zuo">属性名称：</div>
           <div class="you">
-            <input type="text" name="username" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入管理员名称">
+            <input type="text" name="attr_name" value="<?php echo ($attributeInfo["attr_name"]); ?>" id="doc-vld-name" minlength="2" placeholder="输入属性名称" class="am-form-field" required/>
+            <input type="hidden" name="attr_id" value="<?php echo ($attributeInfo["attr_id"]); ?>">
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员角色：</div>
+          <div class="zuo">商品类型：</div>
           <div class="you">
-            <select name="role_id">
-              <option value="0">请选择管理员角色</option>
-              <?php if(is_array($roleData)): $i = 0; $__LIST__ = $roleData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["role_id"]); ?>"><?php echo ($vo["role_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+            <select name="type_id">
+              <option value="0">请选择商品类型</option>
+              <?php if(is_array($typeData)): $i = 0; $__LIST__ = $typeData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["type_id"]); ?>" <?php echo $vo['type_id']==$attributeInfo['type_id']?"selected":'' ?>><?php echo ($vo["type_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
             </select>
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">新密码：</div>
+          <div class="zuo">属性类型</div>
           <div class="you">
-            <input type="password" name="password" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入新密码">
+            <label class="am-radio-inline"><input type="radio" checked value="1" name="attr_type"> 唯一</label>
+            <label class="am-radio-inline"><input type="radio" <?php echo $attributeInfo['attr_type']==0?'checked':'' ?> value="0" name="attr_type"> 单选</label>
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">新密码：</div>
+          <div class="zuo">录入方式</div>
           <div class="you">
-            <input type="password" name="repassword" class="am-input-sm" id="doc-ipt-email-1" placeholder="请再次输入新密码">
+            <label class="am-radio-inline"><input type="radio" checked value="1" name="attr_input_type"> 手工</label>
+            <label class="am-radio-inline"><input type="radio" <?php echo $attributeInfo['attr_input_type']==0?'checked':'' ?> value="0" name="attr_input_type"> 列表</label>
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员邮箱：</div>
+          <div class="zuo">可选值：</div>
           <div class="you">
-            <input type="email" name="email" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入管理员邮箱">
-          </div>
-        </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">管理员备注：</div>
-          <div class="you">
-            <textarea class="" name="mark_up" rows="2" id="doc-ta-1"></textarea>
+          <textarea id="doc-vld-ta-1" name="attr_values" disabled="disabled" minlength="4" maxlength="100" placeholder="请输入属性可选值，使用英文逗号分隔"><?php echo $attributeInfo['attr_values'] ?></textarea>
           </div>
         </div>
         <div class="am-form-group am-cf">
@@ -84,8 +81,17 @@
     </div>
 <script type="text/javascript">
     $('#btnBack').click(function(event) {
-      window.location.href = '/index.php/Admin/Admin/lst';
+      window.location.href = '/index.php/Admin/Attribute/lst';
     });
+    // 属性可选值优化
+    $("input[name='attr_input_type']").click(function(){
+        var attr_input_type_value = $(this).val();
+        if (attr_input_type_value==1) {
+          $('#doc-vld-ta-1').attr('disabled', true);
+        }else{
+          $('#doc-vld-ta-1').attr('disabled', false);
+        };
+    })
 </script>
 			<div class="foods">
 			      <ul>版权所有@2015</ul>

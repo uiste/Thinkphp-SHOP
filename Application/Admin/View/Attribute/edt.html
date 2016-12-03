@@ -1,0 +1,70 @@
+<include file="Public/header" />
+<div class="admin-biaogelist">
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 &gt; <a href="__CONTROLLER__/lst">属性列表</a></dl>
+    </div>
+	
+    <div class="fbneirong">
+      <form class="am-form" action="__SELF__" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">属性名称：</div>
+          <div class="you">
+            <input type="text" name="attr_name" value="{$attributeInfo.attr_name}" id="doc-vld-name" minlength="2" placeholder="输入属性名称" class="am-form-field" required/>
+            <input type="hidden" name="attr_id" value="{$attributeInfo.attr_id}">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">商品类型：</div>
+          <div class="you">
+            <select name="type_id">
+              <option value="0">请选择商品类型</option>
+              <volist name="typeData" id="vo">
+                <option value="{$vo.type_id}" <?php echo $vo['type_id']==$attributeInfo['type_id']?"selected":'' ?>>{$vo.type_name}</option>
+              </volist>
+            </select>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">属性类型</div>
+          <div class="you">
+            <label class="am-radio-inline"><input type="radio" checked value="1" name="attr_type"> 唯一</label>
+            <label class="am-radio-inline"><input type="radio" <?php echo $attributeInfo['attr_type']==0?'checked':'' ?> value="0" name="attr_type"> 单选</label>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">录入方式</div>
+          <div class="you">
+            <label class="am-radio-inline"><input type="radio" checked value="1" name="attr_input_type"> 手工</label>
+            <label class="am-radio-inline"><input type="radio" <?php echo $attributeInfo['attr_input_type']==0?'checked':'' ?> value="0" name="attr_input_type"> 列表</label>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">可选值：</div>
+          <div class="you">
+          <textarea id="doc-vld-ta-1" name="attr_values" disabled="disabled" minlength="4" maxlength="100" placeholder="请输入属性可选值，使用英文逗号分隔"><?php echo $attributeInfo['attr_values'] ?></textarea>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="button" id="btnBack" class="am-btn am-btn-success am-round">返回</button>&nbsp;   &nbsp; <button type="submit" class="am-btn am-btn-secondary am-round">提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+<script type="text/javascript">
+    $('#btnBack').click(function(event) {
+      window.location.href = '__CONTROLLER__/lst';
+    });
+    // 属性可选值优化
+    $("input[name='attr_input_type']").click(function(){
+        var attr_input_type_value = $(this).val();
+        if (attr_input_type_value==1) {
+          $('#doc-vld-ta-1').attr('disabled', true);
+        }else{
+          $('#doc-vld-ta-1').attr('disabled', false);
+        };
+    })
+</script>
+<include file="Public/footer" />
