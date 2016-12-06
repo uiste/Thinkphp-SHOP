@@ -8,6 +8,25 @@
 	}
 	
 	/**
+	 * PHP防止XSS攻击过滤函数
+	 * @param  string $val 需要过滤的数据
+	 * @return string      过滤后的数据
+	 */
+	function removeXSS($val){
+
+		static $obj = null;
+
+		if($obj === null){
+
+			require './Public/Lib/HTMLPurifier/HTMLPurifier.includes.php';
+
+			$obj = new HTMLPurifier();
+		}
+
+		return $obj->purify($val);
+	}
+
+	/**
 	 * 邮件发送函数
 	 * @param  string $to      邮件接收者
 	 * @param  string $from    邮件发送者

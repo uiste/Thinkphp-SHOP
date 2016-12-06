@@ -27,7 +27,7 @@
             <div class="tpl-login-content">
                 <div class="tpl-login-logo" style="background: url(/Public/Admin/assets/img/logo.png) center no-repeat;">
                 </div>
-                <form class="am-form tpl-form-line-form" action="/index.php/Admin/Login/login.html" method="post">
+                <form class="am-form tpl-form-line-form" action="/index.php/Admin/Login/login" method="post">
                     <div class="am-form-group">
                         <input type="text" class="tpl-form-input" id="user-name" name="username" placeholder="请输入账号">
                     </div>

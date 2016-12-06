@@ -35,7 +35,7 @@
     </div>
   
     <div class="fbneirong">
-      <form class="am-form" action="/index.php/Admin/Role/edt/id/2" method="post">
+      <form class="am-form" action="/index.php/Admin/Role/edt/id/4" method="post">
         <div class="am-form-group am-cf">
           <div class="zuo">角色名称：</div>
           <div class="you">

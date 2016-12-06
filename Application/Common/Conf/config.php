@@ -12,4 +12,19 @@ return array(
 
     // 激活邮箱秘钥
     'EMAIL_KEY'				=>	'tQMCouXW32yOx9cgxWMMTzbtxwwa22vQ',
+
+    // 用于富文本编辑器与XSS攻击的解决方案
+    'DEFAULT_FILTER'        =>  'removeXSS',
+
+    // 文件上传的配置信息
+    'MAX_UPLOAD_FILE_SIZE'  =>  '3M',
+    'UPLOAD_ROOT_PATH'      =>  './Public/Uploads/',
+    'ALLOW_EXTS'            =>  array('jpg', 'gif', 'png', 'jpeg'),
+    'THUMB'     =>  array(
+        'THUMB_W'       =>  150,
+        'THUMB_H'       =>  150,
+        'THUMB_S'       =>  1,
+    ),
+
+    'VIEW_ROOT_PATH'        =>  '/Public/Uploads/',
 );

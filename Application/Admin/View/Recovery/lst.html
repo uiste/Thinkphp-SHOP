@@ -1,0 +1,170 @@
+<include file="Public/header" />
+<div class="admin-biaogelist">
+    <div class="listbiaoti am-cf">
+        <ul class="am-icon-flag on">
+            栏目名称
+        </ul>
+        <dl class="am-icon-home" style="float: right;">
+            当前位置： 首页 &gt;
+            <a href="{:U('lst')}">
+                回收站列表
+            </a>
+        </dl>
+    </div>
+    <div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+        <ul>
+            <li style="margin-right: 0;">
+                <span class="tubiao am-icon-calendar">
+                </span>
+                <input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"
+                placeholder="添加日期" data-am-datepicker="{theme: 'success',}" readonly="">
+            </li>
+            <li style="margin-left: -10px;">
+                <div class="am-btn-group am-btn-group-xs">
+                    <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}"
+                    style="display: none;">
+                        <option value="b">
+                            产品分类
+                        </option>
+                        <option value="o">
+                            下架
+                        </option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="关键词搜索">
+            </li>
+            <li>
+                <button type="button" class="am-btn am-radius am-btn-xs am-btn-success"
+                style="margin-top: -1px;">
+                    搜索
+                </button>
+            </li>
+        </ul>
+    </div>
+    <form class="am-form am-g">
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+                <tr class="am-success">
+                    <th class="table-check"><input type="checkbox"></th>
+                    <th class="table-id">排序</th>
+                    <th class="table-id">ID</th>
+                    <th class="table-title">商品名称</th>
+                    <th class="table-type">商品货号</th>
+                    <th class="table-price">商品价格</th>
+                    <th class="table-type">商品类别</th>
+                    <th class="table-author am-hide-sm-only"  style="text-align: center;" >上架/下架</th>
+                    <th class="table-date am-hide-sm-only" style="text-align: center;" >添加日期</th>
+                    <th width="163px" class="table-set" style="text-align: center;" >操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="goodsData" id="vo">
+                    <tr>
+                        <td>
+                            <input type="checkbox">
+                        </td>
+                        <td>
+                            <input type="text" class="am-form-field am-radius am-input-sm">
+                        </td>
+                        <td>{$vo.goods_id}</td>
+                        <td>{$vo.goods_name}</td>
+                        <td>{$vo.goods_sn}</td>
+                        <td>{$vo.goods_price}</td>
+                        <td>{$vo.cate_name}</td>
+                        <td class="am-hide-sm-only"  style="text-align: center;" >
+                        <?php 
+                            if ($vo['is_sale']) {
+                                echo '<i class="am-icon-check am-text-warning">';
+                            }else{
+                                echo '<i class="am-icon-close am-text-primary"></i>';
+                            } 
+                        ?> 
+                        </td>
+                        <td class="am-hide-sm-only" style="text-align: center;" >{$vo.add_time|Date='Y-m-d',###}</td>
+                        <td >
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+
+                                    <a href="__CONTROLLER__/recy/id/<?php echo $vo['goods_id'] ?>"><button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" title="还原"><span class="am-icon-pencil-square-o"></span></button></a>
+
+                                    <a href="<?php echo U('rdel',array('id'=>$vo['goods_id']),false);?>" onclick="return confirm('确定要彻底删除吗')" ><button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" title="彻底删除"><span class="am-icon-trash-o"></span></button></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>                
+                </volist>
+            </tbody>
+        </table>
+        <div class="am-btn-group am-btn-group-xs">
+            <button type="button" class="am-btn am-btn-default">
+                <span class="am-icon-save">
+                </span>
+                上架
+            </button>
+            <button type="button" class="am-btn am-btn-default">
+                <span class="am-icon-save">
+                </span>
+                下架
+            </button>
+            <button type="button" class="am-btn am-btn-default">
+                <span class="am-icon-save">
+                </span>
+                保存
+            </button>
+            <button type="button" class="am-btn am-btn-default">
+                <span class="am-icon-trash-o">
+                </span>
+                删除
+            </button>
+        </div>
+        <ul class="am-pagination am-fr">
+            <li class="am-disabled">
+                <a href="#">
+                    «
+                </a>
+            </li>
+            <li class="am-active">
+                <a href="#">
+                    1
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    2
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    3
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    4
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    5
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    »
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <p>
+            注：拓展小功能暂未添加，敬请期待
+        </p>
+    </form>
+<script type="text/javascript">
+  $('#add').click(function(){
+    window.location.href = '__CONTROLLER__/add';
+  });
+
+</script>
+<include file="Public/footer" />

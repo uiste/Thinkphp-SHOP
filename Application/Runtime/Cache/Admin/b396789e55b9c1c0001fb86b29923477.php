@@ -14,9 +14,10 @@
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.min.css"/>
 <link rel="stylesheet" href="/Public/Admin/assets/css/admin.css">
-<link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" />
+<!-- <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" /> -->
 <link rel="stylesheet" href="/Public/Admin/assets/css/font_awesome.css" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/app.css">
+<link rel="stylesheet" type="text/css" href="/Public/Lib/lightbox/css/lightbox.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
 </head>
@@ -64,4 +65,18 @@
 			</div>
 		</div>
 	</body>
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/Public/Admin/assets/js/polyfill/rem.min.js"></script>
+<script src="/Public/Admin/assets/js/polyfill/respond.min.js"></script>
+<script src="/Public/Admin/assets/js/amazeui.legacy.js"></script>
+<![endif]--> 
+
+<!--[if (gte IE 9)|!(IE)]><!--> 
+<script src="/Public/Admin/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+
 </html>

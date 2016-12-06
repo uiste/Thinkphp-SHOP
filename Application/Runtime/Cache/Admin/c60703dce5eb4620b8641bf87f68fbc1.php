@@ -35,7 +35,7 @@
     </div>
   
     <div class="fbneirong">
-      <form class="am-form" action="/index.php/Admin/Auth/edt/id/10" method="post">
+      <form class="am-form" action="/index.php/Admin/Auth/edt/id/35" method="post">
         <div class="am-form-group am-cf">
           <div class="zuo">权限名称：</div>
           <div class="you">
@@ -59,13 +59,13 @@
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">权限方法</div>
+          <div class="zuo">权限方法：</div>
           <div class="you">
             <input type="text" name="auth_a" value="<?php echo ($authInfo["auth_a"]); ?>" class="am-input-sm" id="doc-ipt-email-1" placeholder="请再次输入方法名">
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">是否显示</div>
+          <div class="zuo">是否显示：</div>
           <div class="you">
             <label class="am-radio-inline"><input type="radio" checked value="1" name="is_show"> 是</label>
             <label class="am-radio-inline"><input type="radio" <?php echo $authInfo['is_show']?'':'checked' ?> value="0" name="is_show"> 否</label>
@@ -89,4 +89,18 @@
 			</div>
 		</div>
 	</body>
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/Public/Admin/assets/js/polyfill/rem.min.js"></script>
+<script src="/Public/Admin/assets/js/polyfill/respond.min.js"></script>
+<script src="/Public/Admin/assets/js/amazeui.legacy.js"></script>
+<![endif]--> 
+
+<!--[if (gte IE 9)|!(IE)]><!--> 
+<script src="/Public/Admin/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+
 </html>

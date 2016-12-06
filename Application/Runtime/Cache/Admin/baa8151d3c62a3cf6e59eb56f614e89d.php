@@ -35,7 +35,7 @@
     </div>
 	
     <div class="fbneirong">
-      <form class="am-form" action="/index.php/Admin/Admin/edt/id/1" method="post" id="edt_form">
+      <form class="am-form" action="/index.php/Admin/Admin/edt/id/7" method="post" id="edt_form">
       <input type="hidden" name="id" value="<?php echo $adminInfo['id'];?>">
         <div class="am-form-group am-cf">
           <div class="zuo">管理员名称：</div>
