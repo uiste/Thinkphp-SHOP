@@ -40,11 +40,12 @@ class RecoveryController extends Controller {
     public function rdel(){
 		$goodsModel = M('Goods');
         $id = I('get.id');
-        if ($goodsModel->delete($id)) {
-            $this->success('删除成功');exit();
-        }else{
-        $this->error('删除失败');
+        $goodsDelImg = $goodsModel->field('goods_img, goods_thumb')->find($id);
+        foreach ($goodsDelImg as $key => $value) {
+            @unlink( C('UPLOAD_ROOT_PATH') . $value );
         }
+        $goodsModel->delete($id);
+        $this->success('删除成功');exit();
     }
 
 }

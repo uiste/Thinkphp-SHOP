@@ -29,7 +29,7 @@
       </ul>
 </div>
 <div class="admin-biaogelist">
-  <form class="am-form" action="/index.php/Admin/Goods/edt/id/18" method="post" enctype="multipart/form-data">
+  <form class="am-form" action="/index.php/Admin/Goods/edt/id/15" method="post" enctype="multipart/form-data">
     <div class="listbiaoti am-cf">
         <ul class="am-icon-flag on">
             商品管理
@@ -77,6 +77,7 @@
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
                       <input type="text" name="goods_name" value="<?php echo ($goodsInfo["goods_name"]); ?>" id="doc-vld-name-1" minlength="3" placeholder="输入商品名称" class="am-form-field">
+                      <input type="hidden" name="goods_id" value="<?php echo ($goodsInfo["goods_id"]); ?>">
                     </div>
                 </div>
                 <div class="am-g am-margin-top">
@@ -111,7 +112,7 @@
                       商品价格
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
-                      <input type="text" name="goods_price" value="<?php echo ($goodsInfo["goods_price"]); ?>" id="doc-vld-name-1" minlength="3" pattern="^[0-9]+$" class="am-form-field" required="">
+                      <input type="text" name="goods_price" value="<?php echo ($goodsInfo["goods_price"]); ?>" id="doc-vld-name-1" minlength="1" class="am-form-field" required="">
                     </div>
                 </div>
                 <div class="am-g am-margin-top">
@@ -155,7 +156,7 @@
                       添加时间
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
-                      <input type="text" id="demo" name="add_time" value="<?php echo ($goodsInfo["add_time"]); ?>"  placeholder="请点击选择添加时间" class="am-form-field" >
+                      <input type="text" id="demo" name="add_time" value="<?php echo (date('Y-m-d H:i:s',$goodsInfo["add_time"])); ?>"  placeholder="请点击选择添加时间" class="am-form-field" >
                     </div>
                 </div>
             </div>

@@ -20,6 +20,44 @@
 <link rel="stylesheet" type="text/css" href="/Public/Lib/lightbox/css/lightbox.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
+<!-- 分页 -->
+<style type="text/css">
+a.prev{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+a.num{
+    border: 1px solid #DDD;
+    margin: 3px;
+    padding: 3px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+span.current{
+    border: 1px solid #0e90d2;
+    margin: 4px;
+    padding: 4px;
+    color: #3E9AFF;
+    z-index: 2;
+    color: #fff;
+    background-color: #0e90d2;
+    padding: 0.2em .7em;
+}
+a.next{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    text-decoration: none;
+}
+        </style>
 </head>
 <body>
 <div class="daohang">
@@ -41,41 +79,44 @@
         </dl>
         <dl>
             <button type="button" id="add" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus">
-                添加产品
+                添加商品
             </button>
         </dl>
     </div>
     <div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
-        <ul>
-            <li style="margin-right: 0;">
-                <span class="tubiao am-icon-calendar">
-                </span>
-                <input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"
-                placeholder="添加日期" data-am-datepicker="{theme: 'success',}" readonly="">
-            </li>
-            <li style="margin-left: -10px;">
-                <div class="am-btn-group am-btn-group-xs">
-                    <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}"
-                    style="display: none;">
-                        <option value="b">
-                            产品分类
-                        </option>
-                        <option value="o">
-                            下架
-                        </option>
-                    </select>
-                </div>
-            </li>
-            <li>
-                <input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="关键词搜索">
-            </li>
-            <li>
-                <button type="button" class="am-btn am-radius am-btn-xs am-btn-success"
-                style="margin-top: -1px;">
-                    搜索
-                </button>
-            </li>
-        </ul>
+        <form action="/index.php/Admin/Goods/lst?gn=&ob=goods_id&ow=asc" method="get" id="searchForm">
+            <ul>
+                <li style="margin-right: 0;">
+                    <span class="tubiao am-icon-calendar">
+                    </span>
+                    <input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"
+                    placeholder="添加日期" data-am-datepicker="{theme: 'success',}">
+                </li>
+                <li>
+                    <input type="text" name="gn" value="<?php echo ($_GET['gn']); ?>" class="am-form-field am-input-sm am-input-xm" placeholder="请输入产品名称">
+                </li>
+                <li>
+                    <input type="radio" name="ob" value="goods_id" checked>编号
+                </li>
+                <li>
+                    <input type="radio" name="ob" value="goods_price" <?php echo I('get.ob')=='goods_price'?'checked':'' ?> >价格
+                </li>
+                <li>|</li>
+                <li>
+                    <input type="radio" name="ow" value="desc" checked>降序
+                </li>
+                <li>
+                    <input type="radio" name="ow" value="asc" <?php echo I('get.ow')=='asc'?'checked':'' ?> >升序
+                </li>
+
+                <li>
+                    <button type="submit" class="am-btn am-radius am-btn-xs am-btn-success"
+                    style="margin-top: -1px;">
+                        搜索
+                    </button>
+                </li>
+            </ul>
+        </form>
     </div>
     <form class="am-form am-g">
         <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
@@ -83,7 +124,7 @@
                 <tr class="am-success">
                     <th class="table-check"><input type="checkbox"></th>
                     <th class="table-id">排序</th>
-                    <th class="table-id">ID</th>
+                    <th class="table-id">编号</th>
                     <th class="table-title">商品名称</th>
                     <th class="table-type">商品货号</th>
                     <th class="table-price">商品价格</th>
@@ -153,41 +194,7 @@
             </button>
         </div>
         <ul class="am-pagination am-fr">
-            <li class="am-disabled">
-                <a href="#">
-                    «
-                </a>
-            </li>
-            <li class="am-active">
-                <a href="#">
-                    1
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    2
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    3
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    4
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    5
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    »
-                </a>
-            </li>
+            <?php echo ($show); ?>
         </ul>
         <hr>
         <p>
@@ -196,6 +203,26 @@
     </form>
 <script type="text/javascript" src="/Public/Lib/lightbox/lightbox-plus-jquery.js"></script>
 <script type="text/javascript">
+// 动态搜索
+$("input[name='gn']").blur(function(){
+    var gn = $.trim( $(this).val() );
+    if (gn == '') {return false}; // 如果是空字符串就不进行刷新
+
+    // 失去焦点的链接地址处理
+    var _href = window.location.href;
+    console.log(_href)
+    var reg = /p\/[0-9]+\.html/g;
+    var _new_href = _href.replace(reg, '');
+    console.log(_new_href)
+    _new_href += 'gn/' +gn;
+    window.location.href = _new_href;
+    
+})
+// js动态排序
+$("input[type='radio']").click(function(event) {
+    var _val = $(this).val();
+    $('#searchForm').submit();
+});
 $('.del').click(function(){
     _aaa = $(this);
     var _goods_id = _aaa.attr('goods_id')

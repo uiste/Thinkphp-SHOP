@@ -14,9 +14,10 @@
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.min.css"/>
 <link rel="stylesheet" href="/Public/Admin/assets/css/admin.css">
-<link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" />
+<!-- <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" /> -->
 <link rel="stylesheet" href="/Public/Admin/assets/css/font_awesome.css" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/app.css">
+<link rel="stylesheet" type="text/css" href="/Public/Lib/lightbox/css/lightbox.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
 </head>
@@ -75,7 +76,7 @@
                       商品名称
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
-                      <input type="text" name="goods_name" id="doc-vld-name-1" minlength="3" placeholder="输入商品名称" class="am-form-field">
+                      <input type="text" name="goods_name" id="doc-vld-name-1" minlength="1" placeholder="输入商品名称" class="am-form-field">
                     </div>
                 </div>
                 <div class="am-g am-margin-top">
@@ -110,7 +111,7 @@
                       商品价格
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
-                      <input type="text" name="goods_price" id="doc-vld-name-1" minlength="3" pattern="^[0-9]+$" class="am-form-field" required="">
+                      <input type="text" name="goods_price" id="doc-vld-name-1" minlength="1" pattern="^[0-9]+$" class="am-form-field" required="">
                     </div>
                 </div>
                 <div class="am-g am-margin-top">

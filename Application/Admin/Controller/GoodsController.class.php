@@ -13,12 +13,10 @@ class GoodsController extends Controller {
 
 	public function lst(){
     	$goodsModel = D('Goods');
-    	$goodsData 	= $goodsModel->where('is_delete = 0')
-            ->alias('goods')
-            ->join('left join jx_category cate on goods.cate_id = cate.cate_id')
-            ->select();
+    	$data 	= $goodsModel->search();
 
-    	$this->assign('goodsData',$goodsData);
+        $this->assign('goodsData',$data['list']);
+    	$this->assign('show',$data['show']);
         // dump($goodsData);exit();
 		$this->display();
         $upload = new \Think\Upload();
@@ -53,7 +51,8 @@ class GoodsController extends Controller {
 
         if (IS_POST) {
             if ($data = $goodsModel->create()) {
-                if ($goodsModel->save()!==false) {
+                // dump($data);exit();
+                if( $goodsModel->save() !== false ){
                     $this->success('更新成功', U('lst'));exit();
                 }else{
                     $this->error('更新失败：' . $goodsModel->getDbError());

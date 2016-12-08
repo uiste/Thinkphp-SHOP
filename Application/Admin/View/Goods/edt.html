@@ -48,6 +48,7 @@
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
                       <input type="text" name="goods_name" value="{$goodsInfo.goods_name}" id="doc-vld-name-1" minlength="3" placeholder="输入商品名称" class="am-form-field">
+                      <input type="hidden" name="goods_id" value="{$goodsInfo.goods_id}">
                     </div>
                 </div>
                 <div class="am-g am-margin-top">
@@ -84,7 +85,7 @@
                       商品价格
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
-                      <input type="text" name="goods_price" value="{$goodsInfo.goods_price}" id="doc-vld-name-1" minlength="3" pattern="^[0-9]+$" class="am-form-field" required="">
+                      <input type="text" name="goods_price" value="{$goodsInfo.goods_price}" id="doc-vld-name-1" minlength="1" class="am-form-field" required="">
                     </div>
                 </div>
                 <div class="am-g am-margin-top">
@@ -128,7 +129,7 @@
                       添加时间
                     </div>
                     <div class="you" style="width: 40%;float:left;margin-left:20px;">
-                      <input type="text" id="demo" name="add_time" value="{$goodsInfo.add_time}"  placeholder="请点击选择添加时间" class="am-form-field" >
+                      <input type="text" id="demo" name="add_time" value="{$goodsInfo.add_time|Date='Y-m-d H:i:s',###}"  placeholder="请点击选择添加时间" class="am-form-field" >
                     </div>
                 </div>
             </div>
