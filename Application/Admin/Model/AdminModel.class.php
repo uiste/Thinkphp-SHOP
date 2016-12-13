@@ -47,6 +47,7 @@ class AdminModel extends Model
 		$password = $this->password;
 		$userinfo = $this->where($where)->find();
 		if ($userinfo) {
+
 			if ($userinfo['password']== md5(md5($password).$userinfo['salt']) ) {
 				// 登录成功调用权限信息保存的方法
 				session('id',$userinfo['id']);

@@ -61,12 +61,17 @@
 							<input type="text" class="txt" id="auto_complete_email" name="email" />
 							<p>3-20位字符，可由字母、数字和下划线组成</p>
 						</li>
+
 						<li>
 							<label for="">手机：</label>
-							<input type="text" class="txt" name="phone" />
+							<input type="text" class="txt" name="phone" id="phone" /> <input type="button" style="padding: 5px;" id="regBtn" value="点击获取验证码" />
 							<p>请输入11位手机号码</p>
 						</li>
-
+						<li>
+							<label class="l-form"  for="">手机验证码：</label>
+							<input type="text" class="txt" id="number" name="number" />
+							<p>4位的验证码</p>
+						</li>
 						<li>
 							<label for="">密码：</label>
 							<input type="password" class="txt" name="password" />
@@ -141,6 +146,47 @@
 		separator: "@",
 		source: ["163.com", "qq.com", "126.com", "139.com", "gmail.com", "hotmail.com", "icloud.com"]
 	});
+	// 自动完成
+	var flage = false;
+	$('#regBtn').click(function(event){
+		var _phone = $.trim( $('#phone').val() );
+
+		var reg = /^0?1[3578][0-9]{9}$/;
+		if (_phone == '' || !reg.test(_phone)){
+			alert('请输入合法的手机号码！');
+			return false;
+		}
+		if (flage) {
+			alert('请不要重复点击');
+			return false;
+		};
+		// 如果手机号码合法
+		$.ajax({
+		
+			url: '/message/send.php',
+			type: 'GET',
+			dataType: 'json',
+			data:{'phone':_phone},
+			success:function(json){
+				flage = true;
+				get_after_time('regBtn',60);
+			}
+		});
+	})
+
+	// 倒计时函数
+	function get_after_time(id,time){
+		var _Timer = null;
+		_Timer = setInterval(function(){
+			// 如果时间减少到0，则清楚定时器
+			if (time<1) {
+				$('#'+id).val('获取验证码');
+				flage = false;
+			}else{
+				$('#'+id).val( (time--) + 's后重新获取验证码')
+			}
+		}, 1000)
+	}
 </script>
 </body>
 </html>

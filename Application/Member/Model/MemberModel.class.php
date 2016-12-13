@@ -11,8 +11,8 @@ class MemberModel extends Model
 	protected $_validate = array(
 		array('username','require','用户名不能为空'),
 		array('password','require','密码不能为空'),
-		array('email','require','邮箱不能为空'),
-		array('phone','require','手机号不能为空'),
+		// array('email','require','邮箱不能为空'),
+		// array('phone','require','手机号不能为空'),
 		
 		array('username','','该用户名已经存在！',0,'unique',1),
 		array('username','','该用户名已经存在！',0,'unique',2),
@@ -25,7 +25,7 @@ class MemberModel extends Model
 		array('email','email','邮箱格式不正确'),
 		array('phone','number','手机不正确'),
 
-		array('checkcode','check_verify','验证码填写错误',1,'function',4),
+		// array('checkcode','check_verify','验证码填写错误',1,'function',4),
 	);
 
 	// 自动完成注册时间
@@ -69,7 +69,6 @@ class MemberModel extends Model
 	public function login($code){
 		$username = $this->username;
 		$where = array('username'=>$username);
-		$password = $this->password;
 		$userinfo = $this->where($where)->find();
 		if ($userinfo) {
 			if ($userinfo['password']== md5(md5($password).$userinfo['salt']) ) {

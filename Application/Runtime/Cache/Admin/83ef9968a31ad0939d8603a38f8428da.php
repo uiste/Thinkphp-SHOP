@@ -14,11 +14,50 @@
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.min.css"/>
 <link rel="stylesheet" href="/Public/Admin/assets/css/admin.css">
-<link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" />
+<!-- <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" /> -->
 <link rel="stylesheet" href="/Public/Admin/assets/css/font_awesome.css" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/app.css">
+<link rel="stylesheet" type="text/css" href="/Public/Lib/lightbox/css/lightbox.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
+<!-- 分页 -->
+<style type="text/css">
+a.prev{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+a.num{
+    border: 1px solid #DDD;
+    margin: 3px;
+    padding: 3px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+span.current{
+    border: 1px solid #0e90d2;
+    margin: 4px;
+    padding: 4px;
+    color: #3E9AFF;
+    z-index: 2;
+    color: #fff;
+    background-color: #0e90d2;
+    padding: 0.2em .7em;
+}
+a.next{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    text-decoration: none;
+}
+        </style>
 </head>
 <body>
 <div class="daohang">

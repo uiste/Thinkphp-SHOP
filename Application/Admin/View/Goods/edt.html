@@ -145,78 +145,20 @@
             </div>
             <div class="am-tab-panel am-fade" id="tab3">
                     <div class="xitong">
-                        <div class="am-alert am-alert-success" data-am-alert="">
-                            <p>
-                                发件箱设置（站内所有邮件均由此邮箱发送，如会员密码找回邮件等）
-                            </p>
-                        </div>
                         <div class="am-form-group">
                             <div class="zuo">
                                 发件人：
                             </div>
                             <div class="you" style="max-width: 300px;">
-                                <input type="email" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
+                                <select name="type_id" id="type_select">
+                                  <option value="0">请选择商品类型</option>
+                                  <volist name="typeData" id="vo">
+                                    <option value="{$vo.type_id}" <?php echo $vo['type_id']==$goodsInfo['type_id']?'selected':''; ?>>{$vo.type_name}</option>
+                                  </volist>
+                                </select>
                             </div>
                         </div>
-                        <div class="am-form-group">
-                            <div class="zuo">
-                                邮箱账号：
-                            </div>
-                            <div class="you" style="max-width: 300px;">
-                                <input type="email" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <div class="zuo">
-                                邮箱密码：
-                            </div>
-                            <div class="you" style="max-width: 300px;">
-                                <input type="email" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <div class="zuo">
-                                SMTP：
-                            </div>
-                            <div class="you" style="max-width: 300px;">
-                                <input type="email" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <div class="zuo">
-                                发送端口：
-                            </div>
-                            <div class="you" style="max-width: 300px;">
-                                <input type="email" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <div class="zuo">
-                                发送方式：
-                            </div>
-                            <div class="you" style="margin-top: 4px;">
-                                <label class="am-radio-inline">
-                                    <input type="radio" value="" name="docInlineRadio">
-                                    SSL服务方式
-                                </label>
-                                <label class="am-radio-inline">
-                                    <input type="radio" name="docInlineRadio">
-                                    TLS服务方式
-                                </label>
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <div class="zuo">
-                            </div>
-                            <div class="you" style="margin-top: 4px;">
-                                测试发送状态
-                                <br>
-                                <br>
-                                <button type="button" class="am-btn am-btn-success  am-radius am-btn-sm">
-                                    保存选择
-                                </button>
-                            </div>
-                        </div>
+                        <div id="attr_container"></div>
                     </div>
             </div>
             <div class="am-tab-panel am-fade" id="tab4">
@@ -282,6 +224,85 @@
 <script type="text/javascript" src="__PUBLIC__/Js/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Js/laydate.js"></script>
 <script type="text/javascript">
+// obj代表当前这个DOM元素
+    function copy_row(obj) {
+        // 先找一下a的父亲，就是一个li 也就是一个属性
+        var _cur_li = $(obj).parent();
+        if( _cur_li.find('a').html() == '[+]' ){
+            var _new_li = _cur_li.clone(); // 新生成的li里面要变成[-]
+            _new_li.find('a').html('[-]');
+            _cur_li.after(_new_li); // 追加到当前之后
+
+        }else{
+            _cur_li.remove();
+        }
+    }
+    //发送ajax请求获取对应商品的属性值
+    var goods_id = <?php echo $goodsInfo['goods_id'];?>
+    // 1. 先生成对应商品的属性框，先不要填值
+    // 2. 把对应值进行填充处理
+    $.ajax({
+        url: '__CONTROLLER__/getGoodsAttr',
+        type: 'GET',
+        dataType: 'json',
+        data:{'goods_id' : goods_id},
+        success:function(json){
+            // 处理返回的对应的商品属性值 [{},{},{}]
+            if(json.sign != 0){
+                return false;
+            }
+            var _html = "";
+            var _i = 0; // 记录变量
+            var _status = ''; // 状态法 标记
+            $.each(json.data, function(index, val) {
+                _html += '<div class="am-form-group">';
+                if(val['attr_type'] == 0){
+                    // 单选  对于单选属性的第一个默认应该是[+] 后面的应该都是[-]
+                    if( _i == 0 ){
+                        // 颜色
+                         _html += "<a href='javascript:;' onclick='copy_row(this);'>[+]</a>";
+                         _status = val['attr_name']; // 设置标记
+                         _i++;
+                    }else{
+                        // 颜色
+                        // 第二次进来，另外的一个属性 1. 和第一次出现的属性是同一个 2. 和上一个出现不同
+                        if(val['attr_name'] != _status){
+                            // 新增属性
+                             _html += "<a href='javascript:;' onclick='copy_row(this);'>[+]</a>";
+                             _status = val['attr_name']; // 状态置新
+                        }else{ 
+                            // 默认不是新增属性
+                            _html += "<a href='javascript:;' onclick='copy_row(this);'>[-]</a>";
+                            _i++;
+                        }
+                    }
+                }
+                _html += '<div class="zuo">' + val['attr_name'] + '：</div>';
+                // 右侧的
+                _html += '<div class="you" style="max-width: 300px;">';
+
+                if(val['attr_input_type'] == 0){
+                    // 单选
+                    var _val = val['attr_values'].split(',');
+                    _html += "<select name='goods_attr[" + val['attr_id'] +"][]'>";
+                    // 属性可选值
+                    $.each(_val, function(index1, val1) {
+                        if(val['goods_attr_values'] == val1){
+                            _html += "<option selected value='" + val1 + "'>" + val1 + "</option>";
+                        }else{
+                            _html += "<option value='" + val1 + "'>" + val1 + "</option>";
+                        }
+                    });
+                    _html += "</select>";
+                }else{
+                    // 手工
+                    _html += "<input type='text' name='goods_attr[" + val['attr_id'] +"]' value='" + val['goods_attr_values'] + "' />"; // goods_attr_values商品值
+                }
+                _html += "</div></div>";
+            });
+            $("#attr_container").html(_html).parent().show();
+        }
+    });
     // ueditor编辑器
     var ue = UE.getEditor('editor');
 

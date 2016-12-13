@@ -20,6 +20,44 @@
 <link rel="stylesheet" type="text/css" href="/Public/Lib/lightbox/css/lightbox.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
+<!-- 分页 -->
+<style type="text/css">
+a.prev{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+a.num{
+    border: 1px solid #DDD;
+    margin: 3px;
+    padding: 3px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+span.current{
+    border: 1px solid #0e90d2;
+    margin: 4px;
+    padding: 4px;
+    color: #3E9AFF;
+    z-index: 2;
+    color: #fff;
+    background-color: #0e90d2;
+    padding: 0.2em .7em;
+}
+a.next{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    text-decoration: none;
+}
+        </style>
 </head>
 <body>
 <div class="daohang">
@@ -67,7 +105,6 @@
           <ul class="am-pagination am-fr">
                 <li class="am-disabled"><a href="#">«</a></li>
                 <li class="am-active"><a href="#">1</a></li>
-                <a href="">22</a>
                 <li><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
                 <li><a href="#">4</a></li>

@@ -14,11 +14,50 @@
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.min.css"/>
 <link rel="stylesheet" href="/Public/Admin/assets/css/admin.css">
-<link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" />
+<!-- <link rel="stylesheet" href="/Public/Admin/assets/css/amazeui.datatables.min.css" /> -->
 <link rel="stylesheet" href="/Public/Admin/assets/css/font_awesome.css" />
 <link rel="stylesheet" href="/Public/Admin/assets/css/app.css">
+<link rel="stylesheet" type="text/css" href="/Public/Lib/lightbox/css/lightbox.css">
 <script src="/Public/Admin/assets/js/jquery.min.js"></script>
 <script src="/Public/Admin/assets/js/app.js"></script>
+<!-- 分页 -->
+<style type="text/css">
+a.prev{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+a.num{
+    border: 1px solid #DDD;
+    margin: 3px;
+    padding: 3px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+span.current{
+    border: 1px solid #0e90d2;
+    margin: 4px;
+    padding: 4px;
+    color: #3E9AFF;
+    z-index: 2;
+    color: #fff;
+    background-color: #0e90d2;
+    padding: 0.2em .7em;
+}
+a.next{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    text-decoration: none;
+}
+        </style>
 </head>
 <body>
 <div class="daohang">
@@ -35,7 +74,7 @@
     </div>
   
     <div class="fbneirong">
-      <form class="am-form" action="/index.php/Admin/Category/edt/id/15" method="post">
+      <form class="am-form" action="/index.php/Admin/Category/edt/id/23" method="post">
         <div class="am-form-group am-cf">
           <div class="zuo">栏目名称：</div>
           <div class="you">
@@ -70,4 +109,18 @@
 			</div>
 		</div>
 	</body>
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/Public/Admin/assets/js/polyfill/rem.min.js"></script>
+<script src="/Public/Admin/assets/js/polyfill/respond.min.js"></script>
+<script src="/Public/Admin/assets/js/amazeui.legacy.js"></script>
+<![endif]--> 
+
+<!--[if (gte IE 9)|!(IE)]><!--> 
+<script src="/Public/Admin/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+
 </html>

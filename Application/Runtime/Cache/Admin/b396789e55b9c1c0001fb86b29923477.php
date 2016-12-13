@@ -22,48 +22,41 @@
 <script src="/Public/Admin/assets/js/app.js"></script>
 <!-- 分页 -->
 <style type="text/css">
-			/*.am-pagination>a{
-				display: inline-block;
-			}*/
-			/*.am-pagination>div>a, .am-pagination>li>span {
-    			padding: 0.2em .7em;
-			}*/
-            a.prev{
-                border: 1px solid #DDD;
-                margin: 4px;
-                padding: 4px;
-                padding: 0.2em .7em;
-                font-weight: 400;
-				font-size: 14px;
-            }
-            a.num{
-                border: 1px solid #DDD;
-                margin: 3px;
-                padding: 3px;
-                padding: 0.2em .7em;
-                font-weight: 400;
-				font-size: 14px;
-				text-decoration: none;
-            }
-            span.current{
-                border: 1px solid #0e90d2;
-                margin: 4px;
-                padding: 4px;
-                color: #3E9AFF;
-                z-index: 2;
-			    color: #fff;
-			    background-color: #0e90d2;
-			    padding: 0.2em .7em;
-            }
-            a.next{
-                border: 1px solid #DDD;
-                margin: 4px;
-                padding: 4px;
-                padding: 0.2em .7em;
-            }
-            a{
-                text-decoration: none;
-            }
+a.prev{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+a.num{
+    border: 1px solid #DDD;
+    margin: 3px;
+    padding: 3px;
+    padding: 0.2em .7em;
+    font-weight: 400;
+	font-size: 14px;
+	text-decoration: none;
+}
+span.current{
+    border: 1px solid #0e90d2;
+    margin: 4px;
+    padding: 4px;
+    color: #3E9AFF;
+    z-index: 2;
+    color: #fff;
+    background-color: #0e90d2;
+    padding: 0.2em .7em;
+}
+a.next{
+    border: 1px solid #DDD;
+    margin: 4px;
+    padding: 4px;
+    padding: 0.2em .7em;
+    text-decoration: none;
+}
         </style>
 </head>
 <body>

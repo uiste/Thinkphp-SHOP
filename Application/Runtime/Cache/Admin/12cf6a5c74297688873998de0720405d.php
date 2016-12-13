@@ -84,7 +84,7 @@ a.next{
         </dl>
     </div>
     <div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
-        <form action="/index.php/Admin/Goods/lst?gn=&ob=goods_id&ow=asc" method="get" id="searchForm">
+        <form action="/index.php/Admin/Goods/lst" method="get" id="searchForm">
             <ul>
                 <li style="margin-right: 0;">
                     <span class="tubiao am-icon-calendar">

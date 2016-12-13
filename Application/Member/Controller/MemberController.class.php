@@ -8,11 +8,17 @@ class MemberController extends Controller {
     public function register(){
     	if (IS_POST) {
     		$memberModel = D('Member');
+            // 手机验证码非法验证
+            $code = I('post.number');
+            $cookieCode = $_COOKIE['code'];
+            if ($code != $cookieCode) {
+                exit('验证码已过期或输入非法！！');
+            }
     		// 注册信息数据验证
     		if ($memberModel -> create()) {
     			// 注册信息入库
     			if ($memberModel -> add()) {
-    				return $this->success('注册成功', U('Home/Index/index'));exit;
+    				return $this->success('注册成功，请前往邮箱激活账号', U('Home/Index/index'));exit;
     			}else{
     				return $this->error('注册失败：<br>' . $this->getDbError());
     			}

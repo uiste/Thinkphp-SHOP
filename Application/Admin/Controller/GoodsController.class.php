@@ -43,7 +43,11 @@ class GoodsController extends Controller {
 		$categoryModel = D('Category');
 		$cateData = $categoryModel->getTree();
 		$this->assign('cateData', $cateData);
-		$this->display();
+        // 获取商品属性类型
+        $typeModel  = D('Type');
+        $typeData   = $typeModel->select();
+		$this->assign('typeData',$typeData);
+        $this->display();
     }
 
     public function edt(){
@@ -63,10 +67,19 @@ class GoodsController extends Controller {
         }
         $id = I('get.id');
         $goodsInfo = $goodsModel->find($id);
+
+        // 获取对应商品信息
         $this->assign('goodsInfo',$goodsInfo);
 
+        // 获取所有商品栏目
         $cateData  = D('category')->getTree();
         $this->assign('cateData',$cateData);
+
+        // 获取所有商品类型
+        $typeModel = D("Type");
+        $typeData = $typeModel->select();
+        $this->assign('typeData', $typeData);
+
 		$this->display();
     }
 
@@ -89,6 +102,46 @@ class GoodsController extends Controller {
                 'sign'  =>  0,
                 'code'  =>  'recovery error',
                 'msg'   =>  '加入回收站失败',
+            );
+            echo json_encode($data);exit();
+        }
+    }
+
+    // 商品拓展属性添加
+    public function getAttr(){
+        $type_id = I('get.type_id');
+        $attrModel = D('attribute');
+        $attrData = $attrModel->where("type_id = $type_id")->select();
+        echo json_encode($attrData);
+    }
+
+    // 商品拓展属性编辑
+    public function getGoodsAttr()
+    {
+        $goodsId = I('get.goods_id');
+
+        $goodsAttrModel = D("GoodsAttr");
+        // 根据商品主键id查询对应的商品属性值，并且属性名称获取sh_attribute
+        $goodsAttrData = $goodsAttrModel
+                ->alias('a')
+                ->field('b.attr_name,b.attr_type,b.attr_input_type,attr_values,a.*')
+                ->join('left join jx_attribute b on a.attr_id = b.attr_id')
+                ->where("a.goods_id = {$goodsId}")
+                ->select();
+                
+        if($goodsAttrData){
+            $data = array(
+                'sign' => 0,
+                'code' => 'get success',
+                'msg' => '获取成功！',
+                'data' => $goodsAttrData
+            );
+            echo json_encode($data);exit();
+        }else{
+            $data = array(
+                'sign' => 1,
+                'code' => 'not found',
+                'msg' => '没有属性值' 
             );
             echo json_encode($data);exit();
         }
